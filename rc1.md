@@ -5,7 +5,7 @@ permalink: /rc1/
 
 <h1 style="font-weight: 800">Label Schema Specification DRAFT (RC1)</h1>
 
-* Canonical URL: `http://labelschema.org/rc1/`
+* Canonical URL: `http://label-schema.org/rc1/`
 * Version: 1.0
 * Status: DRAFT
 * Maintainers:
@@ -19,7 +19,7 @@ permalink: /rc1/
 
 ### A shared namespace for container labels
 
-[Docker Inc. express a preference](https://docs.docker.com/engine/userguide/labels-custom-metadata/) that container labels should be namespaced. Label Schema is a community project to provide a shared namespace for use by multiple tools, specifically **org.labelschema**.
+[Docker Inc. express a preference](https://docs.docker.com/engine/userguide/labels-custom-metadata/) that container labels should be namespaced. Label Schema is a community project to provide a shared namespace for use by multiple tools, specifically **org.label-schema**.
 
 By providing a shared and community owned namespace we aim to:
 
@@ -39,13 +39,13 @@ Label Schema labels MUST comply with Docker’s guidelines:
 
 * Keys may not contain consecutive dots or dashes.
 
-Where applicable we suggest compatibility with the [generic labels suggested by Project Atomic](https://github.com/projectatomic/ContainerApplicationGenericLabels), except that rather than namespacing to a domain controlled by the author we suggest using the shared **org.labelschema** namespace, so that multiple tools can take advantage of a common understanding of the meaning of the label.
+Where applicable we suggest compatibility with the [generic labels suggested by Project Atomic](https://github.com/projectatomic/ContainerApplicationGenericLabels), except that rather than namespacing to a domain controlled by the author we suggest using the shared **org.label-schema** namespace, so that multiple tools can take advantage of a common understanding of the meaning of the label.
 
 In addition all values for Label Schema compatible labels MUST use UTF-8 encoding.
 
 ### Label semantics
 
-All labels are OPTIONAL, although `org.labelschema.schema-version` SHOULD be present. 
+All labels are OPTIONAL, although `org.label-schema.schema-version` SHOULD be present. 
 
 Consumers should not make assumptions based on the absence of one of these labels. For example, the absence of a `vcs-url` label means that a tool using this label schema does not know the URL for this image’s source code. From the absence of the label one can not infere there is no such source.
 
@@ -59,32 +59,32 @@ Where a label is semantically meaningful to a tool that claims compatibility wit
 
 These are immutable, and can only have one sensible meaning that is defined at build time. 
 
-All labels are OPTIONAL, however if present MUST be prefixed with the namespace `org.labelschema`.
+All labels are OPTIONAL, however if present MUST be prefixed with the namespace `org.label-schema`.
 
 | Label | Example | Meaning |
 |-------|---------|---------|
-| `build-date` | `org.labelschema.build-date=”2016-04-12T23:20:50.52Z”` | This label contains the Date/Time the image was built. The value SHOULD be formatted according to [RFC 3339](https://tools.ietf.org/html/rfc3339). |
-| `name` | `org.labelschema.name = “myname”` | A human friendly name for the image. For example, this could be the name of a microservice in a microservice architecture. |
-| `description` | `org.labelschema.description = “This service does awesome things with other things”` | Text description of the image. May contain up to 300 characters. |
-| `usage` | `org.labelschema.usage= “/usr/doc/app-usage.txt”` | Link to a file in the container or alternatively a URL that provides usage instructions. If a URL is given it SHOULD be specific to this version of the image e.g. `http://docs.example.com/v1.2/usage` rather than `http://docs.example.com/usage` |
-| `url` | `org.labelschema.url=”http://postgresql.org”` | URL of website with more information about the product or service provided by the container. |
-| `vcs-url` | `org.labelschema.vcs-url = “https://github.com/nginx/nginx”` | URL for the source code under version control from which this container image was built. |
-| `vcs-ref` | `org.labelschema.vcs-ref = “279FA63”` | Identifier for the version of the source code from which this image was built. For example if the version control system is git this is the SHA. |
-| `vendor` | `org.labelschema.vendor = “Stark Industries”` | The organization that produces this image. |
-| `version` | `org.labelschema.version = “1.2.3”` `org.labelschema.version = “Beta4.2”` `org.labelschema.version = “1.2.2-dirty”` `org.labelschema.version = “my-test”` | Release identifier for the contents of the image. This is entirely up to the user and could be a numeric version number like 1.2.3, or a text label.<br> The version MAY match a label or tag in the source code repository.<br> You should make sure that only images that exactly reflect a version of code should have that version label. If Julia finds a version 0.7.1 in a repository she SHOULD be able to infer this matches version 0.7.1 of the associated code (and in particular, not 0.7.1 plus some later commits).<br> You SHOULD omit the version label, or use a marker like “dirty” or “test” to indicate when a container image does not match a labelled / tagged version of the code. |
-| `schema-version` | `org.labelschema.schema-version = “1.0”` | This label SHOULD be present to indicate the version of Label Schema in use. |
-| `docker.cmd` | `org.labelschema.docker.cmd= “docker run -d -p 5000:5000 -v config.json:/etc/config.json myapp”` | How to run a container based on the image under the Docker runtime. |
-| `docker.cmd.devel` | `org.labelschema.docker.cmd.devel = “docker run -d -p 5050:5050 -e ENV=DEV myapp”` | How to run the container in development mode under the Docker runtime e.g. with debug tooling or more verbose output. |
-| `docker.cmd.test` | `org.labelschema.docker.cmd.test = “docker run myapp runtests”` | How to run the bundled test-suite for the image under the Docker runtime. MUST execute tests then exit, returning output on stdout and exit with a non-zero exit code on failure. |
-| `docker.cmd.debug` | `org.labelschema.docker.debug-shell = “docker exec -it $CONTAINER /bin/redis-cli”` | How to get an appropriate interactive shell for debugging on the container under Docker. |
-| `docker.cmd.help` | `org.labelschema.docker.cmd.help = “docker exec -it $CONTAINER /bin/app --help”` | How to output help from the image under the docker runtime. The container MUST print this information to stdout and then exit. |
-| `docker.params` | `org.labelschema.docker.param = “NO_THREADS=integer number of threads to launch”` | Applicable environment variables for the Docker runtime. Multiple environment variables can be specified by separating with commas. |
-| `rkt.cmd` | `org.labelschema.rkt.cmd= “rkt run --port=5000-tcp:5000 myapp.aci”` | How to run a container based on the image under the rkt runtime. |
-| `rkt.cmd.devel` | `org.labelschema.rkt.cmd.devel = “rkt run --port=5000-tcp:5000 --set-env=ENV=DEV myapp.aci”` | How to run the container in development mode under the rkt runtime e.g. with debug tooling or more verbose output. |
-| `rkt.cmd.test` | `org.labelschema.rkt.cmd.test = “rkt run --port=5000-tcp:5000 myapp.aci -- runtests”` | How to run the bundled test-suite for the image under the rkt runtime. MUST execute tests then exit, returning output on stdout and exit with a non-zero exit code on failure. |
-| `rkt.cmd.debug` | `org.labelschema.rkt.debug-shell = “rkt enter $CONTAINER --app=/bin/redis-cli”` | How to get an appropriate interactive shell for debugging on the container under rkt. |
-| `rkt.cmd.help` | `org.labelschema.rkt.cmd.help = “rkt enter $CONTAINER --app=/bin/help”` | How to output help from the image under the rkt runtime. The container MUST print this information to stdout and then exit. |
-| `rkt.params` | `org.labelschema.rkt.param = “NO_THREADS=integer number of threads to launch”` | Applicable environment variables for the rkt runtime. Multiple environment variables can be specified by separating with commas. |
+| `build-date` | `org.label-schema.build-date=”2016-04-12T23:20:50.52Z”` | This label contains the Date/Time the image was built. The value SHOULD be formatted according to [RFC 3339](https://tools.ietf.org/html/rfc3339). |
+| `name` | `org.label-schema.name = “myname”` | A human friendly name for the image. For example, this could be the name of a microservice in a microservice architecture. |
+| `description` | `org.label-schema.description = “This service does awesome things with other things”` | Text description of the image. May contain up to 300 characters. |
+| `usage` | `org.label-schema.usage= “/usr/doc/app-usage.txt”` | Link to a file in the container or alternatively a URL that provides usage instructions. If a URL is given it SHOULD be specific to this version of the image e.g. `http://docs.example.com/v1.2/usage` rather than `http://docs.example.com/usage` |
+| `url` | `org.label-schema.url=”http://postgresql.org”` | URL of website with more information about the product or service provided by the container. |
+| `vcs-url` | `org.label-schema.vcs-url = “https://github.com/nginx/nginx”` | URL for the source code under version control from which this container image was built. |
+| `vcs-ref` | `org.label-schema.vcs-ref = “279FA63”` | Identifier for the version of the source code from which this image was built. For example if the version control system is git this is the SHA. |
+| `vendor` | `org.label-schema.vendor = “Stark Industries”` | The organization that produces this image. |
+| `version` | `org.label-schema.version = “1.2.3”` `org.label-schema.version = “Beta4.2”` `org.label-schema.version = “1.2.2-dirty”` `org.label-schema.version = “my-test”` | Release identifier for the contents of the image. This is entirely up to the user and could be a numeric version number like 1.2.3, or a text label.<br> The version MAY match a label or tag in the source code repository.<br> You should make sure that only images that exactly reflect a version of code should have that version label. If Julia finds a version 0.7.1 in a repository she SHOULD be able to infer this matches version 0.7.1 of the associated code (and in particular, not 0.7.1 plus some later commits).<br> You SHOULD omit the version label, or use a marker like “dirty” or “test” to indicate when a container image does not match a labelled / tagged version of the code. |
+| `schema-version` | `org.label-schema.schema-version = “1.0”` | This label SHOULD be present to indicate the version of Label Schema in use. |
+| `docker.cmd` | `org.label-schema.docker.cmd= “docker run -d -p 5000:5000 -v config.json:/etc/config.json myapp”` | How to run a container based on the image under the Docker runtime. |
+| `docker.cmd.devel` | `org.label-schema.docker.cmd.devel = “docker run -d -p 5050:5050 -e ENV=DEV myapp”` | How to run the container in development mode under the Docker runtime e.g. with debug tooling or more verbose output. |
+| `docker.cmd.test` | `org.label-schema.docker.cmd.test = “docker run myapp runtests”` | How to run the bundled test-suite for the image under the Docker runtime. MUST execute tests then exit, returning output on stdout and exit with a non-zero exit code on failure. |
+| `docker.cmd.debug` | `org.label-schema.docker.debug-shell = “docker exec -it $CONTAINER /bin/redis-cli”` | How to get an appropriate interactive shell for debugging on the container under Docker. |
+| `docker.cmd.help` | `org.label-schema.docker.cmd.help = “docker exec -it $CONTAINER /bin/app --help”` | How to output help from the image under the docker runtime. The container MUST print this information to stdout and then exit. |
+| `docker.params` | `org.label-schema.docker.param = “NO_THREADS=integer number of threads to launch”` | Applicable environment variables for the Docker runtime. Multiple environment variables can be specified by separating with commas. |
+| `rkt.cmd` | `org.label-schema.rkt.cmd= “rkt run --port=5000-tcp:5000 myapp.aci”` | How to run a container based on the image under the rkt runtime. |
+| `rkt.cmd.devel` | `org.label-schema.rkt.cmd.devel = “rkt run --port=5000-tcp:5000 --set-env=ENV=DEV myapp.aci”` | How to run the container in development mode under the rkt runtime e.g. with debug tooling or more verbose output. |
+| `rkt.cmd.test` | `org.label-schema.rkt.cmd.test = “rkt run --port=5000-tcp:5000 myapp.aci -- runtests”` | How to run the bundled test-suite for the image under the rkt runtime. MUST execute tests then exit, returning output on stdout and exit with a non-zero exit code on failure. |
+| `rkt.cmd.debug` | `org.label-schema.rkt.debug-shell = “rkt enter $CONTAINER --app=/bin/redis-cli”` | How to get an appropriate interactive shell for debugging on the container under rkt. |
+| `rkt.cmd.help` | `org.label-schema.rkt.cmd.help = “rkt enter $CONTAINER --app=/bin/help”` | How to output help from the image under the rkt runtime. The container MUST print this information to stdout and then exit. |
+| `rkt.params` | `org.label-schema.rkt.param = “NO_THREADS=integer number of threads to launch”` | Applicable environment variables for the rkt runtime. Multiple environment variables can be specified by separating with commas. |
 
 
 ### Background

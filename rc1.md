@@ -3,10 +3,10 @@ layout: page
 permalink: /rc1/
 ---
 
-<h1 style="font-weight: 800">Label Schema Specification DRAFT (RC1)</h1>
+<h1 style="font-weight: 800">Label Schema Specification DRAFT (1.0.0-rc.1)</h1>
 
 * Canonical URL: `http://label-schema.org/rc1/`
-* Version: 1.0
+* Version: 1.0.0-rc.1
 * Status: DRAFT
 * Maintainers:
   * Liz Rice <liz@microscaling.com>

@@ -3,7 +3,7 @@ layout: page
 permalink: /rc1/
 ---
 
-<h1 style="font-weight: 800">Label Schema Specification DRAFT (1.0.0-rc.1)</h1>
+<h1 style="font-weight: 800">Label Schema Convention DRAFT (1.0.0-rc.1)</h1>
 
 * Canonical URL: `http://label-schema.org/rc1/`
 * Version: 1.0.0-rc.1
@@ -47,13 +47,15 @@ In addition all values for Label Schema compatible labels MUST use UTF-8 encodin
 
 All labels are OPTIONAL, although `org.label-schema.schema-version` SHOULD be present. 
 
-Consumers should not make assumptions based on the absence of one of these labels. For example, the absence of a `vcs-url` label means that a tool using this label schema does not know the URL for this image’s source code. From the absence of the label one can not infere there is no such source.
+Consumers should not make assumptions based on the absence of one of these labels. For example, the absence of a `vcs-url` label means that a tool using this label schema does not know the URL for this image’s source code. From the absence of the label one can not infer there is no such source.
 
-Labels apply only to the image on which they are set. They do not apply to any base images used to build the image.
+Labels apply only to the image on which they are set. They do not apply to any base images used to build the image. 
+
+Note that an image inherits the labels of any base image used to build it. If these base image labels are not appropriate to the final image, they should be explicitly overwritten in that final image. There is no mechanism to NOT inherit the labels of a base image.
 
 In general a label has a single value. Where a list of values is meaningful, it is indicated in the table below, and the values are given as a comma-separated list. 
 
-Where a label is semantically meaningful to a tool that claims compatibility with the spec, it MUST support the key name and value defined in this specification. 
+Where a label is semantically meaningful to a tool that claims compatibility with this convention, the tool MUST support the key name and value defined in this convention. 
 
 ### Build-time labels
 
@@ -91,7 +93,7 @@ All labels are OPTIONAL, however if present MUST be prefixed with the namespace 
 
 Many tools need some information about a container image, or about the consumer's use of that container image. Metadata built into container images can enable even more powerful container management tooling. 
 
-By agreeing on a standardized set of labels, everyone can use tools from different vendors without the need to add vendor-specific labels to all their images, especially where those labels carry the same information or serve the the same purpose. Duplication leads to the risk of error. 
+By agreeing on a conventional set of labels, everyone can use tools from different vendors without the need to add vendor-specific labels to all their images, especially where those labels carry the same information or serve the the same purpose. Duplication leads to the risk of error. 
 
 Examples of the kind of information commonly found in image labels today are:
 
@@ -111,15 +113,15 @@ In some cases the information is immutable for the container image, and can (and
 
 In other cases it is only possible or desirable to define labels after the container is built - for example labels indicating whether the container has been tested, or who is the current support engineer for a deployed container. We describe this as ‘run time’ information, though in some cases (like test status) it is useful even when a container is not currently running. 
 
-Many tools and orchestration systems already support the use of container labels or annotations. This spec defines the semantics of a set of standardized labels so that ecosystem tools can have a shared understanding of them. The intention is for this specification to be fully compatible with existing container runtime specifications and implementations.
+Many tools and orchestration systems already support the use of container labels or annotations. This convention defines the semantics of a set of basic labels so that ecosystem tools can have a shared understanding of them. The intention is for this convention to be fully compatible with existing container runtime specifications and implementations.
 
 Here are a small number of examples illustrating cases where it’s useful for different tool vendors to support the same label semantics:
 
-* A continuous integration tool automatically add labels for source code and version number during the build process. An orchestration system’s UI could use the same labels to show which versions of code are running, and a logging tool could automatically add versioning information to its output. If the tools use the standard label definition, the user doesn’t need to do anything to see information about the version of code that is running.
+* A continuous integration tool automatically adds labels for source code and version number during the build process. An orchestration system’s UI could use the same labels to show which versions of code are running, and a logging tool could automatically add versioning information to its output. If the tools use the conventional label definition, the user doesn’t need to do anything to see information about the version of code that is running.
 
-* Monitoring / alarm systems can use standardized labels for identifying who to contact in the event of a critical error being generated from within a given container. 
+* Monitoring / alarm systems can use conventional labels for identifying who to contact in the event of a critical error being generated from within a given container. 
 
-* Visualization and monitoring tools can use container metadata to display useful information in human-readable form, such as what code is running within a deployment, and how the containers are related. If different tools use a standard schema, users don’t need to add different labels whenever they want to experiment with a new tool, or if they want to use multiple tools in parallel. 
+* Visualization and monitoring tools can use container metadata to display useful information in human-readable form, such as what code is running within a deployment, and how the containers are related. If different tools use a schema convention, users don’t need to add different labels whenever they want to experiment with a new tool, or if they want to use multiple tools in parallel. 
 
 This is just the tip of the iceberg; the key concept is that if tool vendors support a common set of semantics it will be much easier for users to add and maintain metadata that those tools might utilize. 
 

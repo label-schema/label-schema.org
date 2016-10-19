@@ -47,7 +47,7 @@ In addition all values for Label Schema compatible labels MUST use UTF-8 encodin
 
 All labels are OPTIONAL, although `org.label-schema.schema-version` SHOULD be present. 
 
-Consumers should not make assumptions based on the absence of one of these labels. For example, the absence of a `vcs-url` label means that a tool using this label schema does not know the URL for this image’s source code. From the absence of the label one can not infere there is no such source.
+Consumers should not make assumptions based on the absence of one of these labels. For example, the absence of a `vcs-url` label means that a tool using this label schema does not know the URL for this image’s source code. From the absence of the label one can not infer there is no such source.
 
 Labels apply only to the image on which they are set. They do not apply to any base images used to build the image.
 
@@ -76,15 +76,15 @@ All labels are OPTIONAL, however if present MUST be prefixed with the namespace 
 | `docker.cmd` | `org.label-schema.docker.cmd= "docker run -d -p 5000:5000 -v config.json:/etc/config.json myapp"` | How to run a container based on the image under the Docker runtime. |
 | `docker.cmd.devel` | `org.label-schema.docker.cmd.devel = "docker run -d -p 5050:5050 -e ENV=DEV myapp"` | How to run the container in development mode under the Docker runtime e.g. with debug tooling or more verbose output. |
 | `docker.cmd.test` | `org.label-schema.docker.cmd.test = "docker run myapp runtests"` | How to run the bundled test-suite for the image under the Docker runtime. MUST execute tests then exit, returning output on stdout and exit with a non-zero exit code on failure. |
-| `docker.cmd.debug` | `org.label-schema.docker.debug-shell = "docker exec -it $CONTAINER /bin/redis-cli"` | How to get an appropriate interactive shell for debugging on the container under Docker. |
+| `docker.cmd.debug` | `org.label-schema.docker.debug = "docker exec -it $CONTAINER /bin/redis-cli"` | How to get an appropriate interactive shell for debugging on the container under Docker. |
 | `docker.cmd.help` | `org.label-schema.docker.cmd.help = "docker exec -it $CONTAINER /bin/app --help"` | How to output help from the image under the docker runtime. The container MUST print this information to stdout and then exit. |
-| `docker.params` | `org.label-schema.docker.param = "NO_THREADS=integer number of threads to launch"` | Applicable environment variables for the Docker runtime. Multiple environment variables can be specified by separating with commas. |
+| `docker.params` | `org.label-schema.docker.params = "NO_THREADS=integer number of threads to launch"` | Applicable environment variables for the Docker runtime. Multiple environment variables can be specified by separating with commas. |
 | `rkt.cmd` | `org.label-schema.rkt.cmd= "rkt run --port=5000-tcp:5000 myapp.aci"` | How to run a container based on the image under the rkt runtime. |
 | `rkt.cmd.devel` | `org.label-schema.rkt.cmd.devel = "rkt run --port=5000-tcp:5000 --set-env=ENV=DEV myapp.aci"` | How to run the container in development mode under the rkt runtime e.g. with debug tooling or more verbose output. |
 | `rkt.cmd.test` | `org.label-schema.rkt.cmd.test = "rkt run --port=5000-tcp:5000 myapp.aci -- runtests"` | How to run the bundled test-suite for the image under the rkt runtime. MUST execute tests then exit, returning output on stdout and exit with a non-zero exit code on failure. |
-| `rkt.cmd.debug` | `org.label-schema.rkt.debug-shell = "rkt enter $CONTAINER --app=/bin/redis-cli"` | How to get an appropriate interactive shell for debugging on the container under rkt. |
+| `rkt.cmd.debug` | `org.label-schema.rkt.debug = "rkt enter $CONTAINER --app=/bin/redis-cli"` | How to get an appropriate interactive shell for debugging on the container under rkt. |
 | `rkt.cmd.help` | `org.label-schema.rkt.cmd.help = "rkt enter $CONTAINER --app=/bin/help"` | How to output help from the image under the rkt runtime. The container MUST print this information to stdout and then exit. |
-| `rkt.params` | `org.label-schema.rkt.param = "NO_THREADS=integer number of threads to launch"` | Applicable environment variables for the rkt runtime. Multiple environment variables can be specified by separating with commas. |
+| `rkt.params` | `org.label-schema.rkt.params = "NO_THREADS=integer number of threads to launch"` | Applicable environment variables for the rkt runtime. Multiple environment variables can be specified by separating with commas. |
 
 
 ### Background

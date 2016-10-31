@@ -4,4 +4,4 @@ title: About
 permalink: /about/
 ---
 
-We are working on a standardised way to express container labels.
+We are working on a convention for a standardised way to express container labels.

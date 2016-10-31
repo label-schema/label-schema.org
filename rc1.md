@@ -15,7 +15,7 @@ permalink: /rc1/
 * Gareth Rushgrove <gareth@morethanseven.net>
 * Adrian Mouat <adrian.mouat@container-solutions.com>
 
-### TOC
+* TOC
 {:toc}
 
 ### A shared namespace for container labels

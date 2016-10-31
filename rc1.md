@@ -8,13 +8,14 @@ permalink: /rc1/
 * Canonical URL: `http://label-schema.org/rc1/`
 * Version: 1.0.0-rc.1
 * Status: DRAFT
-* Maintainers:
-  * Liz Rice <liz@microscaling.com>
-  * Michael Hausenblas <michael.hausenblas@dcos.io>
-  * Gareth Rushgrove <gareth@morethanseven.net>
-  * Adrian Mouat <adrian.mouat@container-solutions.com>
 
-* TOC
+### Maintainers:
+* Liz Rice <liz@microscaling.com>
+* Michael Hausenblas <michael.hausenblas@dcos.io>
+* Gareth Rushgrove <gareth@morethanseven.net>
+* Adrian Mouat <adrian.mouat@container-solutions.com>
+
+### TOC
 {:toc}
 
 ### A shared namespace for container labels

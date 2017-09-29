@@ -11,7 +11,7 @@ permalink: /rc1/
 
 ### Maintainers:
 * Liz Rice <liz@microscaling.com>
-* Michael Hausenblas <michael.hausenblas@dcos.io>
+* Michael Hausenblas <m.hausenblas@acm.org>
 * Gareth Rushgrove <gareth@morethanseven.net>
 * Adrian Mouat <adrian.mouat@container-solutions.com>
 

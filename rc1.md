@@ -70,6 +70,7 @@ All labels are OPTIONAL, however if present MUST be prefixed with the namespace 
 | `description` | `org.label-schema.description = "This service does awesome things with other things"` | Text description of the image. May contain up to 300 characters. |
 | `usage` | `org.label-schema.usage= "/usr/doc/app-usage.txt"` | Link to a file in the container or alternatively a URL that provides usage instructions. If a URL is given it SHOULD be specific to this version of the image e.g. `http://docs.example.com/v1.2/usage` rather than `http://docs.example.com/usage` |
 | `url` | `org.label-schema.url="http://postgresql.org"` | URL of website with more information about the product or service provided by the container. |
+| `registry-url` | `org.label-schema.registry-url = "https://hub.docker.com/_/nginx/"` | URL for the registry in which this container image has been built and published to.
 | `vcs-url` | `org.label-schema.vcs-url = "https://github.com/nginx/nginx"` | URL for the source code under version control from which this container image was built. |
 | `vcs-ref` | `org.label-schema.vcs-ref = "279FA63"` | Identifier for the version of the source code from which this image was built. For example if the version control system is git this is the SHA. |
 | `vendor` | `org.label-schema.vendor = "Stark Industries"` | The organization that produces this image. |

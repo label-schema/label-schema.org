@@ -68,6 +68,9 @@ All labels are OPTIONAL, however if present MUST be prefixed with the namespace 
 | `build-date` | `org.label-schema.build-date="2016-04-12T23:20:50.52Z"` | This label contains the Date/Time the image was built. The value SHOULD be formatted according to [RFC 3339](https://tools.ietf.org/html/rfc3339). |
 | `name` | `org.label-schema.name = "myname"` | A human friendly name for the image. For example, this could be the name of a microservice in a microservice architecture. |
 | `description` | `org.label-schema.description = "This service does awesome things with other things"` | Text description of the image. May contain up to 300 characters. |
+| `license` | `org.label-schema.license = "GPL-3.0"` | License(s) of the project. Must conform to the [SPDX license specification](https://spdx.org/licenses). |
+| `license-image` | `org.label-schema.license-image = "MIT"` | License(s) of the image, if different from the project. Must conform to the [SPDX license specification](https://spdx.org/licenses). |
+| `license-source` | `org.label-schema.license-source = "GPL-3.0"` | License(s) of the source code, if different from the project. Must conform to the [SPDX license specification](https://spdx.org/licenses). |
 | `usage` | `org.label-schema.usage= "/usr/doc/app-usage.txt"` | Link to a file in the container or alternatively a URL that provides usage instructions. If a URL is given it SHOULD be specific to this version of the image e.g. `http://docs.example.com/v1.2/usage` rather than `http://docs.example.com/usage` |
 | `url` | `org.label-schema.url="http://postgresql.org"` | URL of website with more information about the product or service provided by the container. |
 | `vcs-url` | `org.label-schema.vcs-url = "https://github.com/nginx/nginx"` | URL for the source code under version control from which this container image was built. |

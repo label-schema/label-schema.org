@@ -7,7 +7,7 @@ permalink: /rc1/
 
 * Canonical URL: `http://label-schema.org/rc1/`
 * Version: 1.0.0-rc.1
-* Status: DEPRECATED IN FAVOUR OF [OCI IMAGE SPEC](https://github.com/opencontainers/image-spec)
+* Status: DEPRECATED IN FAVOUR OF [OCI IMAGE SPEC: ANNOTATIONS](https://github.com/opencontainers/image-spec/blob/v1.0.1/annotations.md)
 
 ### Maintainers:
 * Liz Rice <liz@lizrice.com>
